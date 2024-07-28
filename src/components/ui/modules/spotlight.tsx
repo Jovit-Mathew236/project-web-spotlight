@@ -34,7 +34,7 @@ const SpotLight = () => {
     },
   ];
   return (
-    <Command className="w-[600px] m-auto backdrop-blur-lg">
+    <Command className="w-[600px] m-auto">
       <CommandInput placeholder="Type a command or search..." />
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
