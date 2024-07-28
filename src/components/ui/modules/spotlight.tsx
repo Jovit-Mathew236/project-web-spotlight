@@ -19,22 +19,22 @@ const SpotLight = () => {
   const listOfCommands = [
     {
       name: "Search",
-      icon: <Search />,
+      icon: <Search size={18} />,
       action: () => void 0,
     },
     {
       name: "Notification",
-      icon: <Bell />,
+      icon: <Bell size={18} />,
       action: () => void 0,
     },
     {
       name: "Inbox",
-      icon: <Inbox />,
+      icon: <Inbox size={18} />,
       action: () => void 0,
     },
   ];
   return (
-    <Command className="w-[600px] m-auto">
+    <Command className="w-[600px] m-auto backdrop-blur-lg">
       <CommandInput placeholder="Type a command or search..." />
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
