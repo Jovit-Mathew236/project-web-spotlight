@@ -71,9 +71,17 @@
     @apply border-border;
   }
 
+  html {
+    background: transparent
+  }
+
   body {
     @apply bg-background text-foreground;
     scroll-behavior: smooth;
-    background-color: gray;
+    background: transparent;
   }
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
