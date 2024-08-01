@@ -1,4 +1,5 @@
-import { getTools, llama } from "@/model/tools";
+import {llama } from "@/model/init";
+import { getTools } from "./tools";
 
 // @ts-ignore
 const window:Window = {

@@ -1,47 +1,43 @@
-// import React from "react";
 import { Bell, Inbox, Search } from "lucide-react";
-
 import {
   Command,
-  // CommandDialog,
-  CommandEmpty,
   CommandGroup,
-  CommandInput,
   CommandItem,
   CommandList,
   CommandSeparator,
   CommandShortcut,
 } from "@/components/ui/command";
 
-// type Props = {}
+import CommandInputBar from "./bar";
+import { CommandEmptyContainer } from "./empty";
 
 const SpotLight = () => {
   const listOfCommands = [
     {
       name: "Search",
       icon: <Search size={18} />,
-      action: () => void 0,
+      action: () => console.log("Search"),
     },
     {
       name: "Notification",
       icon: <Bell size={18} />,
-      action: () => void 0,
+      action: () => console.log("Notification"),
     },
     {
       name: "Inbox",
       icon: <Inbox size={18} />,
-      action: () => void 0,
+      action: () => console.log("Inbox"),
     },
   ];
   return (
-    <Command className="w-[600px] m-auto">
-      <CommandInput placeholder="Type a command or search..." />
+    <Command className="w-[600px] max-h-96">
+      <CommandInputBar />
       <CommandList>
-        <CommandEmpty>No results found.</CommandEmpty>
-        <CommandGroup heading="tabs">
+        <CommandEmptyContainer />
+        <CommandGroup heading="Tabs">
           {listOfCommands.map((element, i) => (
             <CommandItem
-              key={i}
+              key={element.name + i}
               onSelect={element.action}
               className="w-full flex justify-between gap-2"
             >
@@ -62,7 +58,9 @@ const SpotLight = () => {
           <CommandItem>Settings</CommandItem>
         </CommandGroup>
         <CommandGroup heading="Project Web">
-          <CommandItem>Search google</CommandItem>
+          <CommandItem>Google</CommandItem>
+          <CommandItem>AI</CommandItem>
+
         </CommandGroup>
       </CommandList>
     </Command>
