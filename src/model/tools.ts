@@ -7,7 +7,8 @@ const searchSite = {
     youtube: (topic: string) => `https://www.youtube.com/results?search_query=${topic}`,
     reddit: (topic: string) => `https://www.reddit.com/search/?type=link&q=${topic}`,
     github: (topic: string) => `https://github.com/search?q=${topic}`,
-}
+    perplexity: (topic: string) => `https://www.perplexity.ai/?q=${topic}`,
+} as const
 
 export const getTools = (model: LanguageModel, window: Window, savedURLs: string[] = []) => {
 
@@ -18,7 +19,9 @@ export const getTools = (model: LanguageModel, window: Window, savedURLs: string
                     "Search any topic or solve any doubt on specified a platform",
                 parameters: z.object({
                     topic: z.string().describe("The topic or doubt to search for"),
-                    platform: z.enum(["google", "youtube", "reddit", "github"]).default("google")
+                    platform: z.enum(
+                        ["google", "youtube", "reddit", "github", "perplexity"]
+                    ).default("google")
                 }),
                 execute: async ({ topic, platform }) => {
 
@@ -26,7 +29,7 @@ export const getTools = (model: LanguageModel, window: Window, savedURLs: string
                         const url = searchSite[platform](encodeURIComponent(topic))
 
                         window.open(url, '_blank')
-                        return `Searching on ${platform}`
+                        return `Searching "${topic}" on ${platform}`
                     }
                     return `Platform support "${platform}" is not available`
 

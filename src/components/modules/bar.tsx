@@ -1,5 +1,5 @@
 import { usePlayer } from "@/lib/usePlayer";
-import { CommandInput } from "../command";
+import { CommandInput } from "../ui/command";
 import { useMicVAD, utils } from "@ricky0123/vad-react";
 import { useRef } from "react";
 import { useAIControl } from "@/lib/state";

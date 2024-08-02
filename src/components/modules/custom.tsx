@@ -2,7 +2,8 @@ import { useState } from "react"
 import { type AFC, CodeBlock } from "./toolUI"
 import { type CoreMessage, generateText } from "ai"
 import { llama } from "@/model/init"
-import { Input } from "../input"
+import { Input } from "../ui/input"
+import { Search, Sparkles } from "lucide-react"
 
 const AI: AFC<"AI"> = ({ data }) => {
     const [conversation, setConv] = useState<CoreMessage[]>([
@@ -47,7 +48,20 @@ const AI: AFC<"AI"> = ({ data }) => {
         </div>
     )
 }
+const search: AFC<"search"> = ({ data }) => {
+    return (
+        <CodeBlock varient="secondary">
+            {data}
+        </CodeBlock>
+    )
+}
 
 export const CustomUI = {
-    AI
+    AI,
+    search
+}
+
+export const CustomUIIcons = {
+    AI: Sparkles,
+    search: Search
 }

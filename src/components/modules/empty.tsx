@@ -1,7 +1,7 @@
 import { useAIControl } from "@/lib/state";
 import { useEffect } from "react";
-import { CornerDownLeft } from "lucide-react";
-import { CommandEmpty } from "../command";
+import { CornerDownLeft, Sparkle, Sparkles } from "lucide-react";
+import { CommandEmpty } from "../ui/command";
 import { useCommandState } from "cmdk";
 
 import { Terminal } from "lucide-react"
@@ -11,7 +11,7 @@ import {
     AlertDescription,
     AlertTitle,
 } from "@/components/ui/alert"
-import { CustomUI } from "./custom";
+import { CustomUI, CustomUIIcons } from "./custom";
 
 
 const CommandEmptyState = () => {
@@ -30,10 +30,11 @@ const CommandEmptyState = () => {
             <div className="flex flex-col gap-1 w-full">
                 {searchResults.map(s => {
                     const UI = s.toolName in CustomUI ? CustomUI[s.toolName as keyof typeof CustomUI] : null
+                    const Icon = s.toolName in CustomUIIcons ? CustomUIIcons[s.toolName as keyof typeof CustomUI] : null
                     return (
                         <Alert className="p-2 w-full" key={s.toolCallId}>
                             <AlertTitle className="flex gap-2">
-                                <Terminal className="h-4 w-4" />
+                                {Icon && <Icon className="h-4 w-4" />}
                                 {s.toolName}</AlertTitle>
                             <AlertDescription>
                                 {/* @ts-ignore */}
