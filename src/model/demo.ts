@@ -1,5 +1,5 @@
-import {llama } from "@/model/init";
-import { getTools } from "./tools";
+// import {llama } from "@/model/init";
+// import { getTools } from "./tools";
 
 // @ts-ignore
 const window:Window = {
@@ -40,15 +40,11 @@ const window:Window = {
     }
 };
 
-const presavedWebsites = [
-    "https://www.google.com",
-    "https://github.com",
-    "https://groq.com",
+// const presavedWebsites = [
+//     "https://www.google.com",
+//     "https://github.com",
+//     "https://groq.com",
 
-];
+// ];
 
-const runTool = getTools(llama, window, presavedWebsites)
-
-const res = await runTool("yt groq")
-
-console.log(res.toolResults)
+//const runTool = getTools(llama, window, presavedWebsites)

@@ -1,10 +1,10 @@
 import { useAIControl } from "@/lib/state";
 import { useEffect } from "react";
-import { CornerDownLeft, Sparkle, Sparkles } from "lucide-react";
+import { CornerDownLeft } from "lucide-react";
 import { CommandEmpty } from "../ui/command";
 import { useCommandState } from "cmdk";
 
-import { Terminal } from "lucide-react"
+//import { Terminal } from "lucide-react"
 
 import {
     Alert,

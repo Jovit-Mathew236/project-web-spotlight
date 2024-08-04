@@ -62,7 +62,7 @@ type AI = {
     searchAI: (string: string) => Promise<void>
 }
 
-export const useAIControl = create<AI>()((set, get) => ({
+export const useAIControl = create<AI>()((set) => ({
     isListerning: true,
     isSpeaking: false,
     isError: undefined,
@@ -70,14 +70,14 @@ export const useAIControl = create<AI>()((set, get) => ({
     // setControl: (control) => set(e => ({ ...control })),
 
     isPlaying: false,
-    setIsPlaying: (isPlaying) => set(e => ({ isPlaying })),
+    setIsPlaying: (isPlaying) => set(_ => ({ isPlaying })),
 
     empty: false,
-    setEmpty: (empty) => set(e => ({ empty })),
+    setEmpty: (empty) => set(_ => ({ empty })),
 
     searchResults: [],
     searchAI: async (text) => {
-        set(e => ({ isProcessing: true }))
+        set(_ => ({ isProcessing: true }))
 
         const { history } = useUserState.getState()
 
@@ -87,7 +87,7 @@ export const useAIControl = create<AI>()((set, get) => ({
 
             console.log(res.toolResults)
 
-            set(e => ({
+            set(_ => ({
                 isListerning: true,
                 isProcessing: false,
                 isSpeaking: false,
@@ -96,7 +96,7 @@ export const useAIControl = create<AI>()((set, get) => ({
             }))
         })
             .catch(res => {
-                set(e => ({
+                set(_ => ({
                     isListerning: true,
                     isProcessing: false,
                     isSpeaking: false,

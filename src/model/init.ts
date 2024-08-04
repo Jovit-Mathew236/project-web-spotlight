@@ -1,6 +1,7 @@
+//@ts-ignore
 import { createOpenAI } from "@ai-sdk/openai";
 import { chromeai } from "chrome-ai";
-import Groq from "groq-sdk";
+// import Groq from "groq-sdk";
 
 // export const groqVoice = new Groq({
 //     apiKey: import.meta.env.GROQ_API_KEY,

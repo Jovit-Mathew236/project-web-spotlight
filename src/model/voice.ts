@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { groqVoice } from "./init";
 
 export async function getTranscript(input: string | File) {
