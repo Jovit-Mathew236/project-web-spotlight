@@ -1,3 +1,4 @@
+//@ts-ignore
 import { createOpenAI } from "@ai-sdk/openai";
 import { chromeai } from "chrome-ai";
 // import Groq from "groq-sdk";

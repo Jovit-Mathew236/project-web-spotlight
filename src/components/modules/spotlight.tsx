@@ -1,4 +1,4 @@
-import { Bell, Inbox, Search } from "lucide-react";
+import { Search } from "lucide-react";
 import {
   Command,
   CommandGroup,
@@ -18,16 +18,16 @@ const SpotLight = () => {
       icon: <Search size={18} />,
       action: () => console.log("Search"),
     },
-    {
-      name: "Notification",
-      icon: <Bell size={18} />,
-      action: () => console.log("Notification"),
-    },
-    {
-      name: "Inbox",
-      icon: <Inbox size={18} />,
-      action: () => console.log("Inbox"),
-    },
+    // {
+    //   name: "Notification",
+    //   icon: <Bell size={18} />,
+    //   action: () => console.log("Notification"),
+    // },
+    // {
+    //   name: "Inbox",
+    //   icon: <Inbox size={18} />,
+    //   action: () => console.log("Inbox"),
+    // },
   ];
   return (
     <Command className="w-[600px] max-h-96">
@@ -47,7 +47,7 @@ const SpotLight = () => {
           ))}
         </CommandGroup>
         <CommandSeparator />
-        <CommandGroup heading="Bookmarks">
+        {/* <CommandGroup heading="Bookmarks">
           <CommandItem>Profile</CommandItem>
           <CommandItem>Billing</CommandItem>
           <CommandItem>Settings</CommandItem>
@@ -56,7 +56,7 @@ const SpotLight = () => {
           <CommandItem>Profile</CommandItem>
           <CommandItem>Billing</CommandItem>
           <CommandItem>Settings</CommandItem>
-        </CommandGroup>
+        </CommandGroup> */}
         <CommandGroup heading="Project Web">
           <CommandItem>Google</CommandItem>
           <CommandItem>AI</CommandItem>

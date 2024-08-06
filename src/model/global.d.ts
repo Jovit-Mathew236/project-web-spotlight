@@ -6,6 +6,7 @@ interface Window {
         requestSplitTab(url?: string): null
         requestFlipTabs(): null
         requestNewGroup(url: string): null
+        load(group: number, tab: number, url: string): null
     }
     dialog: {
         closeDialog: () => void
@@ -14,7 +15,9 @@ interface Window {
         listDir(path: string, subdir?: boolean): Dir[]
         getFileUrl(): string
         getFolderUrl(): string
-    }
+    },
+    currentTab: number,
+    currentGroup: number
 }
 
 declare global {

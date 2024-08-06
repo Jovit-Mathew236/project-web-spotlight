@@ -4,7 +4,7 @@ import { CornerDownLeft } from "lucide-react";
 import { CommandEmpty } from "../ui/command";
 import { useCommandState } from "cmdk";
 
-// import { Terminal } from "lucide-react";
+//// import { Terminal } from "lucide-react";
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { CustomUI, CustomUIIcons } from "./custom";
@@ -48,6 +48,7 @@ const CommandEmptyState = () => {
               </AlertTitle>
               <AlertDescription>
                 {UI ? (
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                   // @ts-ignore
                   <UI data={s.result} />
                 ) : (

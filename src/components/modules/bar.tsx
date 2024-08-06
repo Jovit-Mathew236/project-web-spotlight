@@ -1,15 +1,16 @@
-// import { usePlayer } from "@/lib/usePlayer";
+//// import { usePlayer } from "@/lib/usePlayer";
 import { CommandInput } from "../ui/command";
-// import { useMicVAD, utils } from "@ricky0123/vad-react";
-// import { useRef } from "react";
+//// import { useMicVAD, utils } from "@ricky0123/vad-react";
+//// import { useRef } from "react";
 import { useAIControl } from "@/lib/state";
 
 // const submit = async (blob: Blob) => {
-//   console.log(blob);
-// };
+// 	console.log(blob)
+// }
 
 const functionCalling = async (input: string) => {
-  console.log(input);
+  window.tabs.load(window.currentGroup, window.currentTab, input);
+  window.dialog.closeDialog();
 };
 
 const CommandInputBar = () => {
