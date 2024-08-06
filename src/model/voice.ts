@@ -1,19 +1,19 @@
-import { groqVoice } from "./init";
+// import { groqVoice } from "./init";
 
-export async function getTranscript(input: string | File) {
-    if (typeof input === "string") return input;
+// export async function getTranscript(input: string | File) {
+//   if (typeof input === "string") return input;
 
-    try {
-        const { text } = await groqVoice.audio.transcriptions.create({
-            file: input,
-            model: "whisper-large-v3",
-        });
+//   try {
+//     const { text } = await groqVoice.audio.transcriptions.create({
+//       file: input,
+//       model: "whisper-large-v3",
+//     });
 
-        return text.trim() || null;
-    } catch {
-        return null; // Empty audio file
-    }
-}
+//     return text.trim() || null;
+//   } catch {
+//     return null; // Empty audio file
+//   }
+// }
 
 // const cartesia = "https://api.cartesia.ai/tts/bytes"
 
