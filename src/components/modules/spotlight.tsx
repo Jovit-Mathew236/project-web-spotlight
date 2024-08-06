@@ -1,4 +1,4 @@
-import { Bell, Inbox, Search } from "lucide-react";
+import { Search } from "lucide-react";
 import {
   Command,
   CommandGroup,
