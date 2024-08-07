@@ -1,6 +1,8 @@
 import fetch from "node-fetch";
 
-export default async function handler(req: any, res: any) {
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+//@ts-ignore
+export default async function handler(req, res) {
   const { q } = req.query;
 
   try {
