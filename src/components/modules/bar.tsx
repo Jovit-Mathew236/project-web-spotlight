@@ -1,20 +1,24 @@
-//// import { usePlayer } from "@/lib/usePlayer";
+// import { usePlayer } from "@/lib/usePlayer";
 import { CommandInput } from "../ui/command";
-//// import { useMicVAD, utils } from "@ricky0123/vad-react";
-//// import { useRef } from "react";
+// import { useMicVAD, utils } from "@ricky0123/vad-react";
+// import { useRef } from "react";
 import { useAIControl } from "@/lib/state";
 
 // const submit = async (blob: Blob) => {
-// 	console.log(blob)
-// }
-
-const functionCalling = async (input: string) => {
-  window.tabs.load(window.currentGroup, window.currentTab, input);
-  window.dialog.closeDialog();
-};
+//   console.log(blob);
+// };
 
 const CommandInputBar = () => {
   const { empty, searchAI } = useAIControl();
+  const functionCalling = async (input: string) => {
+    // redirect
+    window.open(
+      `https://www.google.com/search?q=${encodeURIComponent(
+        input
+      )}&sourceid=chrome&ie=UTF-8`,
+      "_self"
+    );
+  };
   // const inputRef = useRef<HTMLInputElement>(null);
   // const player = usePlayer();
   // const vad = useMicVAD({

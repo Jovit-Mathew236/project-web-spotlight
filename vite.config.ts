@@ -27,4 +27,13 @@ export default defineConfig({
       compress: { drop_console: true, drop_debugger: true },
     },
   },
+  server: {
+    proxy: {
+      "/api": {
+        target: "https://www.google.com",
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  },
 });
