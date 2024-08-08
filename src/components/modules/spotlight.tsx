@@ -10,6 +10,7 @@ import {
 
 import CommandInputBar from "./bar";
 import { CommandEmptyContainer } from "./empty";
+import { useState } from "react";
 
 const SpotLight = () => {
   const listOfCommands = [
@@ -29,11 +30,14 @@ const SpotLight = () => {
     //   action: () => console.log("Inbox"),
     // },
   ];
+
+  const [response, setResponse] = useState("");
+
   return (
     <Command className="w-[600px] max-h-96">
-      <CommandInputBar />
+      <CommandInputBar setResponse={setResponse}/>
       <CommandList>
-        <CommandEmptyContainer />
+        <CommandEmptyContainer response={response} setResponse={setResponse}/>
         <CommandGroup heading="Tabs">
           {listOfCommands.map((element, i) => (
             <CommandItem

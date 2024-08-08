@@ -1,5 +1,19 @@
 type Dir = { path: string } & ({ isDir: true, dirs: Omit<Dir, "isDir">[] } | { isDir: false })
 
+type OllamaResponse = {
+    model: string;
+    created_at: string;
+    response: string;
+    done: boolean;
+    context: number[];
+    total_duration: number;
+    load_duration: number;
+    prompt_eval_count: number;
+    prompt_eval_duration: number;
+    eval_count: number;
+    eval_duration: number;
+  };
+
 interface Window {
     tabs: {
         addTabs(tabs: Array<Array<string>>): boolean;
@@ -18,6 +32,9 @@ interface Window {
     },
     suggestions: {
         getDuckDuckGoSuggestions(text: string): Promise<{phrase: string}[]>
+    },
+    ai: {
+        generate(model: string, text: string): Promise<OllamaResponse>
     }
     currentTab: number,
     currentGroup: number

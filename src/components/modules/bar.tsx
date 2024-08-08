@@ -8,7 +8,7 @@ import { useAIControl } from "@/lib/state";
 //   console.log(blob);
 // };
 
-const CommandInputBar = () => {
+const CommandInputBar = ({setResponse}: {setResponse: (response: string) => void}) => {
   const { empty, searchAI } = useAIControl();
   const isDomainName = (input: string): boolean => {
     // Simple regex to check if the input looks like a domain name
@@ -17,7 +17,11 @@ const CommandInputBar = () => {
     return domainRegex.test(input);
   };
   const functionCalling = async (input: string) => {
-    if (isDomainName(input)) {
+    if(input.substring(0, 3) === "/ai"){
+      setResponse("Thinking...")
+      setResponse((await window.ai.generate("qwen2:0.5b", input.substring(3))).response)
+      return;
+    }else if (isDomainName(input)) {
       // Open the domain directly
       window.tabs.load(window.currentGroup, window.currentTab, `https://${input}`);
     } else {

@@ -6,7 +6,7 @@ import { useCommandState } from "cmdk";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { CustomUI, CustomUIIcons } from "./custom";
 
-const CommandEmptyState = () => {
+const CommandEmptyState = ({response, setResponse}: {response: string, setResponse: (response: string) => void}) => {
   const { setEmpty, searchResults } = useAIControl();
   const search = useCommandState((state) => state.search);
   const [suggestions, setSuggestions] = useState<string[]>([]);
@@ -16,7 +16,8 @@ const CommandEmptyState = () => {
   }, []);
 
   useEffect(() => {
-    if (search) {
+    if (search && search.substring(0, 3) !== "/ai") {
+
       fetchSuggestions(search);
     } else {
       setSuggestions([]);
@@ -27,6 +28,7 @@ const CommandEmptyState = () => {
     try {
       const suggestions = await window.suggestions.getDuckDuckGoSuggestions(query);
       setSuggestions(suggestions.map((suggestion) => suggestion.phrase));
+      setResponse("");
     } catch (error) {
       console.error("Error fetching suggestions:", error);
     }
@@ -34,7 +36,7 @@ const CommandEmptyState = () => {
 
   return (
     <>
-      {!searchResults.length && (
+      {suggestions.length > 0 ? (
         <div className="flex flex-col">
           {/* <div className="mx-auto">Suggestions for "{search}":</div> */}
           <ul className="w-full mt-2 text-base flex flex-col gap-1">
@@ -50,6 +52,8 @@ const CommandEmptyState = () => {
             ))}
           </ul>
         </div>
+      ) : (
+        <p className="text-neutral-400">{response}</p>
       )}
       <div className="flex flex-col gap-1 w-full">
         {searchResults.map((s) => {
@@ -90,8 +94,8 @@ const CommandEmptyState = () => {
   );
 };
 
-export const CommandEmptyContainer = () => (
+export const CommandEmptyContainer = ({response, setResponse}: {response: string, setResponse: (response: string) => void}) => (
   <CommandEmpty className="flex flex-col p-6 text-sm gap-6">
-    <CommandEmptyState />
+    <CommandEmptyState response={response} setResponse={setResponse}/>
   </CommandEmpty>
 );
