@@ -16,6 +16,9 @@ interface Window {
         getFileUrl(): string
         getFolderUrl(): string
     },
+    suggestions: {
+        getDuckDuckGoSuggestions(text: string): Promise<{phrase: string}[]>
+    }
     currentTab: number,
     currentGroup: number
 }

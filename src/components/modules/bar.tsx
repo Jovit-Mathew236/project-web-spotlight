@@ -12,12 +12,14 @@ const CommandInputBar = () => {
   const { empty, searchAI } = useAIControl();
   const functionCalling = async (input: string) => {
     // redirect
-    window.open(
+    window.tabs.load(
+      window.currentGroup,
+      window.currentTab,
       `https://www.google.com/search?q=${encodeURIComponent(
         input
-      )}&sourceid=chrome&ie=UTF-8`,
-      "_self"
+      )}&sourceid=chrome&ie=UTF-8`
     );
+    window.dialog.closeDialog()
   };
   // const inputRef = useRef<HTMLInputElement>(null);
   // const player = usePlayer();
