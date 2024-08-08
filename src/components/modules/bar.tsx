@@ -10,15 +10,26 @@ import { useAIControl } from "@/lib/state";
 
 const CommandInputBar = () => {
   const { empty, searchAI } = useAIControl();
+  const isDomainName = (input: string): boolean => {
+    // Simple regex to check if the input looks like a domain name
+    const domainRegex =
+      /^(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$/;
+    return domainRegex.test(input);
+  };
   const functionCalling = async (input: string) => {
-    // redirect
-    window.tabs.load(
-      window.currentGroup,
-      window.currentTab,
-      `https://www.google.com/search?q=${encodeURIComponent(
-        input
-      )}&sourceid=chrome&ie=UTF-8`
-    );
+    if (isDomainName(input)) {
+      // Open the domain directly
+      window.tabs.load(window.currentGroup, window.currentTab, `https://${input}`);
+    } else {
+      // Redirect to Google search
+      window.tabs.load(
+        window.currentGroup,
+        window.currentTab,
+        `https://www.google.com/search?q=${encodeURIComponent(
+          input
+        )}&sourceid=chrome&ie=UTF-8`
+      );
+    }
     window.dialog.closeDialog()
   };
   // const inputRef = useRef<HTMLInputElement>(null);
