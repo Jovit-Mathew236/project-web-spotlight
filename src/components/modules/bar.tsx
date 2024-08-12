@@ -33,7 +33,12 @@ const CommandInputBar = ({setResponse}: {setResponse: (response: string) => void
         setResponse("Thinking...")
         const res = await runtools(input.substring(4));
         setResponse("")
-        setResponse(res.response.toolResults.at(-1)?.result)
+        if(typeof(res.response.toolResults.at(-1)?.result) === "object"){
+          setResponse(res.response.toolResults.at(-1)?.result.response)
+        }else{
+          setResponse(res.response.toolResults.at(-1)?.result)
+        }
+        
       }catch(error){
         console.error(error);
         setResponse("I'm sorry, something went wrong.")
