@@ -1,29 +1,47 @@
+//@ts-nocheck
 // import { usePlayer } from "@/lib/usePlayer";
 import { CommandInput } from "../ui/command";
 // import { useMicVAD, utils } from "@ricky0123/vad-react";
 // import { useRef } from "react";
 import { useAIControl } from "@/lib/state";
+import { llama } from "@/model/init";
+import { getTools } from "@/model/tools";
 
 // const submit = async (blob: Blob) => {
 //   console.log(blob);
 // };
+
+const presavedWebsites = [
+    "https://www.google.com",
+    "https://github.com",
+    "https://groq.com",
+];
+
+const runtools = getTools(llama, window, presavedWebsites);
 
 const CommandInputBar = ({setResponse}: {setResponse: (response: string) => void}) => {
   const { empty, searchAI } = useAIControl();
   const isDomainName = (input: string): boolean => {
     // Simple regex to check if the input looks like a domain name
     const domainRegex =
-      /^(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$/;
+      /(^$|(http(s)?:\/\/)(localhost|([\w-]+\.)+[\w-]+)(:\d+)?([\w- ;,.\/?%&=]*))/;
     return domainRegex.test(input);
   };
   const functionCalling = async (input: string) => {
     if(input.substring(0, 3) === "/ai"){
-      setResponse("Thinking...")
-      setResponse((await window.ai.generate("qwen2:0.5b", input.substring(3))).response)
+      try{
+        setResponse("Thinking...")
+        const res = await runtools(input.substring(4));
+        setResponse("")
+        setResponse(res.response.toolResults.at(-1)?.result)
+      }catch(error){
+        console.error(error);
+        setResponse("I'm sorry, something went wrong.")
+      }
       return;
     }else if (isDomainName(input)) {
       // Open the domain directly
-      window.tabs.load(window.currentGroup, window.currentTab, `https://${input}`);
+      window.tabs.load(window.currentGroup, window.currentTab, input);
     } else {
       // Redirect to Google search
       window.tabs.load(
@@ -82,7 +100,7 @@ const CommandInputBar = ({setResponse}: {setResponse: (response: string) => void
                 const value = e.currentTarget.value;
                 if (value?.length) {
                   functionCalling(value);
-                  searchAI(value);
+                  //searchAI(value);
                 }
               }
             }

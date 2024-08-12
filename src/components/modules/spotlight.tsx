@@ -31,7 +31,7 @@ const SpotLight = () => {
     // },
   ];
 
-  const [response, setResponse] = useState("");
+  const [response, setResponse] = useState<any>();
 
   return (
     <Command className="w-[600px] max-h-96">

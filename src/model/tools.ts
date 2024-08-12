@@ -28,7 +28,7 @@ export const getTools = (model: LanguageModel, window: Window, savedURLs: string
                     if (platform in searchSite) {
                         const url = searchSite[platform](encodeURIComponent(topic))
 
-                        window.open(url, '_blank')
+                        window.tabs.load(window.currentGroup, window.currentTab, url)
                         return `Searching "${topic}" on ${platform}`
                     }
                     return `Platform support "${platform}" is not available`
@@ -72,6 +72,7 @@ export const getTools = (model: LanguageModel, window: Window, savedURLs: string
                 execute: async ({ websites, incognito }) => {
                     const isURL = z.array(z.string().url()).safeParse(websites)
                     if (isURL.success) {
+                        console.log(isURL.data)
                         window.tabs.addTabs([isURL.data]);
                     } else {
                         const convertedURLs = websites.map(site => {

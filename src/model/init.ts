@@ -9,7 +9,7 @@ import { chromeai } from "chrome-ai";
 
 export const groq = createOpenAI({
   baseURL: "https://api.groq.com/openai/v1",
-  apiKey: import.meta.env.VITE_GROQ_API_KEY,
+  apiKey: "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",
 });
 
 export const ollama = chromeai();
